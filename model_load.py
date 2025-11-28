@@ -50,4 +50,3 @@ dataset = apply_chat_template(
 model.save_pretrained("llama-3-8b")
 tokenizer.save_pretrained("llama-3-8b")
 dataset.save_pretrained("/scratch/tokenized_dataset")
-
