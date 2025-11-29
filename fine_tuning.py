@@ -64,14 +64,8 @@ trainer_stats = trainer.train()
 model.save_pretrained("lora_model")
 tokenizer.save_pretrained("lora_model")
 
-model.save_pretrained_merged(
-    "llama-3-8b-merged",
-    tokenizer,
-    save_method = "merged_16bit",
-)
-
 model.save_pretrained_gguf(
-    "llama-3-8b-merged",
+    "/scratch/llama-3-8b-gguf",
     tokenizer,
     quantization_method = "q4_k_m",  # or "q8_0" / "f16"
 )
