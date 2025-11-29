@@ -68,7 +68,7 @@ tokenizer.save_pretrained("lora")
 #merged_model.save_pretrained("merged")
 #tokenizer.save_pretrained("merged")
 
-merged_model.save_pretrained_gguf(
+model.save_pretrained_gguf(
     "model",
     tokenizer,
     #quantization_method = "q4_k_m",  # or "q8_0" / "f16"
