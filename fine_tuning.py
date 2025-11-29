@@ -64,12 +64,12 @@ trainer_stats = trainer.train()
 model.save_pretrained("lora")
 tokenizer.save_pretrained("lora")
 
-#merged_model = model.merge_and_unload()
-#merged_model.save_pretrained("merged")
-#tokenizer.save_pretrained("merged")
+merged_model = model.merge_and_unload()
+merged_model.save_pretrained("merged_model")
+tokenizer.save_pretrained("merged_model")
 
-model.save_pretrained_gguf(
-    "model",
-    tokenizer,
-    #quantization_method = "q4_k_m",  # or "q8_0" / "f16"
-)
+#model.save_pretrained_gguf(
+#    "model",
+#    tokenizer,
+#    #quantization_method = "q4_k_m",  # or "q8_0" / "f16"
+#)
