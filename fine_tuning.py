@@ -61,4 +61,4 @@ trainer = SFTTrainer(
 
 trainer_stats = trainer.train()
 
-model.save_pretrained_gguf("finetuned_llama-3-8b", tokenizer,)
+model.save_pretrained_gguf("llama-3-8b", tokenizer,)
