@@ -72,6 +72,12 @@ merged_model.save_pretrained(
 )
 tokenizer.save_pretrained("merged_model")
 
+import json
+with open("merged_model/config.json", "r", encoding="utf-8") as f:
+    config = json.load(f)
+print(json.dumps(config, indent=2, ensure_ascii=False))
+
+
 #model.save_pretrained_gguf(
 #    "model",
 #    tokenizer,
