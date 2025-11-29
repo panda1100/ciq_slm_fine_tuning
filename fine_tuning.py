@@ -61,6 +61,6 @@ trainer = SFTTrainer(
 
 trainer_stats = trainer.train()
 
-model.save_pretrained("finetuned_llama-3-8b")
-tokenizer.save_pretrained("finetuned_llama-3-8b")
-model.save_pretrained_gguf("finetuned_llama-3-8b", tokenizer,)
+model.save_pretrained("lora_model")
+tokenizer.save_pretrained("lora_model")
+model.save_pretrained_gguf("llama-3-8b", tokenizer,)
