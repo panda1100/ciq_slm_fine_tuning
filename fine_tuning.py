@@ -65,7 +65,11 @@ model.save_pretrained("lora")
 tokenizer.save_pretrained("lora")
 
 merged_model = model.merge_and_unload()
-merged_model.save_pretrained("merged_model")
+merged_model.save_pretrained(
+    "merged_model",
+    save_dtype="float16",
+    safe_serialization=True
+)
 tokenizer.save_pretrained("merged_model")
 
 #model.save_pretrained_gguf(
