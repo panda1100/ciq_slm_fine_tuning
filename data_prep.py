@@ -14,5 +14,4 @@ dataset = to_sharegpt(
 
 dataset = standardize_sharegpt(dataset)
 
-dataset.save_pretrained("/scratch/dataset")
-#dataset.save_to_disk("/scratch/dataset")
+dataset.save_to_disk("/scratch/dataset")
