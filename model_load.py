@@ -47,6 +47,6 @@ dataset = apply_chat_template(
     # default_system_message = "You are a helpful assistant", << [OPTIONAL]
 )
 
-model.save_pretrained("llama-3-8b")
-tokenizer.save_pretrained("llama-3-8b")
+model.save_pretrained("model")
+tokenizer.save_pretrained("model")
 dataset.save_to_disk("/scratch/tokenized_dataset")

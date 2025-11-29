@@ -11,7 +11,7 @@ dtype = None # None for auto detection. Float16 for Tesla T4, V100, Bfloat16 for
 load_in_4bit = True # Use 4bit quantization to reduce memory usage. Can be False.
 
 model, tokenizer = FastLanguageModel.from_pretrained(
-    model_name = "llama-3-8b",
+    model_name = "model",
     max_seq_length = max_seq_length,
     dtype = dtype,
     load_in_4bit = load_in_4bit,
@@ -61,11 +61,15 @@ trainer = SFTTrainer(
 
 trainer_stats = trainer.train()
 
-model.save_pretrained("lora_model")
-tokenizer.save_pretrained("lora_model")
+model.save_pretrained("lora")
+tokenizer.save_pretrained("lora")
 
-model.save_pretrained_gguf(
-    "/scratch/llama-3-8b-gguf",
+#merged_model = model.merge_and_unload()
+#merged_model.save_pretrained("merged")
+#tokenizer.save_pretrained("merged")
+
+merged_model.save_pretrained_gguf(
+    "model",
     tokenizer,
-    quantization_method = "q4_k_m",  # or "q8_0" / "f16"
+    #quantization_method = "q4_k_m",  # or "q8_0" / "f16"
 )
