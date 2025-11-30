@@ -61,28 +61,33 @@ trainer = SFTTrainer(
 
 trainer_stats = trainer.train()
 
-model.save_pretrained_merged(
-    "finetuned",
-    tokenizer,
-    save_method = "merged_16bit",
-)
+import traceback
 
-from pathlib import Path
-import os
+try:
+    model.save_pretrained_merged(
+        str(save_dir),
+        tokenizer,
+        save_method="merged_16bit",
+    )
+except Exception:
+    print("save_pretrained_merged FAILED:")
+    traceback.print_exc()
 
-cwd_dir = Path(os.getcwd())
-out_dir = Path("finetuned")
-print("CWD:", os.getcwd())
-print("Exists?", out_dir.exists())
-print("Contents:", list(cwd_dir.iterdir()))
-print("Contents:", list(Path("/scratch/model").iterdir()))
-if out_dir.exists():
-    print("Contents:", list(out_dir.iterdir()))
+#from pathlib import Path
+#import os
+#cwd_dir = Path(os.getcwd())
+#out_dir = Path("finetuned")
+#print("CWD:", os.getcwd())
+#print("Exists?", out_dir.exists())
+#print("Contents:", list(cwd_dir.iterdir()))
+#print("Contents:", list(Path("/scratch/model").iterdir()))
+#if out_dir.exists():
+#    print("Contents:", list(out_dir.iterdir()))
 
-import json
-with open("finetuned/config.json", "r", encoding="utf-8") as f:
-    config = json.load(f)
-print(json.dumps(config, indent=2, ensure_ascii=False))
+#import json
+#with open("finetuned/config.json", "r", encoding="utf-8") as f:
+#    config = json.load(f)
+#print(json.dumps(config, indent=2, ensure_ascii=False))
 
 
 #model.save_pretrained_gguf(
