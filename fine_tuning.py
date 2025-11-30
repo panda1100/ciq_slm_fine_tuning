@@ -68,7 +68,7 @@ model.save_pretrained_merged(
 )
 
 import json
-with open("finetuned_llama-3-8b/config.json", "r", encoding="utf-8") as f:
+with open("finetuned_llama-3-8b-16bit/config.json", "r", encoding="utf-8") as f:
     config = json.load(f)
 print(json.dumps(config, indent=2, ensure_ascii=False))
 
