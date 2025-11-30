@@ -62,7 +62,7 @@ trainer = SFTTrainer(
 trainer_stats = trainer.train()
 
 model.save_pretrained_merged(
-    "finetuned_llama-3-8b-16bit",
+    "finetuned",
     tokenizer,
     save_method = "merged_16bit",
 )
@@ -70,15 +70,16 @@ model.save_pretrained_merged(
 from pathlib import Path
 import os
 
-out_dir = Path("finetuned_llama-3-8b-16bit")
+cwd_dir = Path(os.getcwd())
+out_dir = Path("finetuned")
 print("CWD:", os.getcwd())
 print("Exists?", out_dir.exists())
-print("Contents:", list(os.getcwd().iterdir()))
+print("Contents:", list(cwd_dir.iterdir()))
 if out_dir.exists():
     print("Contents:", list(out_dir.iterdir()))
-    
+
 import json
-with open("finetuned_llama-3-8b-16bit/config.json", "r", encoding="utf-8") as f:
+with open("finetuned/config.json", "r", encoding="utf-8") as f:
     config = json.load(f)
 print(json.dumps(config, indent=2, ensure_ascii=False))
 
