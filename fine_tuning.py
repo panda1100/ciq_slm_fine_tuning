@@ -67,6 +67,14 @@ model.save_pretrained_merged(
     save_method = "merged_16bit",
 )
 
+from pathlib import Path
+import os
+
+out_dir = Path("finetuned_llama-3-8b-16bit")
+print("CWD:", os.getcwd())
+print("Exists?", out_dir.exists())
+print("Contents:", list(os.getcwd().iterdir()))
+
 import json
 with open("finetuned_llama-3-8b-16bit/config.json", "r", encoding="utf-8") as f:
     config = json.load(f)
