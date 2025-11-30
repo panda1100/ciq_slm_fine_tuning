@@ -61,46 +61,13 @@ trainer = SFTTrainer(
 
 trainer_stats = trainer.train()
 
-model.save_pretrained("lora")
-tokenizer.save_pretrained("lora")
-
-merged_model = model.merge_and_unload()
-merged_model.save_pretrained(
-    "merged_model",
-    save_dtype="float16",
-    safe_serialization=True
+model.save_pretrained_merged(
+    "finetuned_llama-3-8b-16bit",
+    tokenizer,
+    save_method = "merged_16bit",
 )
-tokenizer.save_pretrained("merged_model")
 
 import json
-with open("merged_model/config.json", "r", encoding="utf-8") as f:
-    config = json.load(f)
-print(json.dumps(config, indent=2, ensure_ascii=False))
-
-# 1. Load the already-merged model from disk
-model, tokenizer = FastLanguageModel.from_pretrained(
-    "merged_model",
-    load_in_4bit=False,
-    dtype="float16",
-    low_cpu_mem_usage=True,
-)
-
-# 2. Clean the config so quantization info disappears
-if hasattr(model.config, "quantization_config"):
-    delattr(model.config, "quantization_config")
-
-model.config.dtype = "float16"
-# some tools look at this field too
-setattr(model.config, "torch_dtype", "float16")
-
-# 3. Save a *clean* fp16 model
-model.save_pretrained(
-    "finetuned_llama-3-8b",
-    save_dtype=torch.float16,
-    safe_serialization=True,
-)
-tokenizer.save_pretrained("finetuned_llama-3-8b")
-
 with open("finetuned_llama-3-8b/config.json", "r", encoding="utf-8") as f:
     config = json.load(f)
 print(json.dumps(config, indent=2, ensure_ascii=False))
