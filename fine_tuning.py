@@ -72,6 +72,16 @@ trainer_stats = trainer.train()
 import traceback
 
 try:
+    model.save_pretrained_gguf(
+        "model",
+        tokenizer,
+        quantization_method = "f16"
+    )
+except Exception:
+    print("save_pretrained_gguf FAILED:")
+    traceback.print_exc()
+
+try:
     model.save_pretrained_merged(
         "finetuned",
         tokenizer,
