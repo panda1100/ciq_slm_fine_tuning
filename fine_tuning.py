@@ -65,7 +65,7 @@ import traceback
 
 try:
     model.save_pretrained_merged(
-        str(save_dir),
+        "finetuned",
         tokenizer,
         save_method="merged_16bit",
     )
