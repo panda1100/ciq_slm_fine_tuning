@@ -75,6 +75,7 @@ out_dir = Path("finetuned")
 print("CWD:", os.getcwd())
 print("Exists?", out_dir.exists())
 print("Contents:", list(cwd_dir.iterdir()))
+print("Contents:", list(Path("/scratch/model").iterdir()))
 if out_dir.exists():
     print("Contents:", list(out_dir.iterdir()))
 
